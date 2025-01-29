@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="jspsych.js"></script>
+    <script src="plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="plugins/jspsych-survey-html-form.js"></script>
+    <script src="plugins/jspsych-html-button-response.js"></script>
+    <link rel="stylesheet" href="css/jspsych.css">
+  </head>
+    <script>
+      // const jsPsych = initJsPsych();
+      const timeline = [];
+
+
+      var instruction1 = {
+        type: "html-button-response",
+        stimulus: "<p>この実験に参加することに同意しますか？</p>",
+        choices: ["同意する", "同意しない"],
+        // on_finish: function(data) {
+        //   if (data.response === 1) {
+        //     jsPsych.endExperiment("実験への参加に同意が得られませんでした。");
+        //   }
+      }
+
+      var instruction2 = {
+        type: "html-button-response",
+        stimulus: "<p>これから顔画像の印象を評価していただきます。\nまず、すべての画像が0.5秒ずつ提示されます。その後、各画像について印象を評価してください。</p>",
+        choices: ["次へ"]
+      }
+
+        /* test trials */
+      var test_stimuli = [
+        { stimulus: "<img src='Face/FaceGen_Image/male/M001.jpg' width='200px'></img>"},
+        { stimulus: "<img src='Face/FaceGen_Image/male/M002.jpg' width='200px'></img>"},
+        { stimulus: "<img src='Face/FaceGen_Image/male/M003.jpg' width='200px'></img>"},
+        { stimulus: "<img src='Face/FaceGen_Image/male/M004.jpg' width='200px'></img>"},
+        { stimulus: "<img src='Face/FaceGen_Image/male/M005.jpg' width='200px'></img>"}
+      ];
+
+      var trial1 = {
+        type: 'html-button-response',
+        stimulus:  jsPsych.timelineVariable('stimulus'),
+        choices: ['全く魅力的</br>ではない', '魅力的</br>ではない', 'やや魅力的</br>ではない', 'どちらでもない', 'やや魅力的', '魅力的', '非常に魅力的'],
+        prompt: "<p>提示された顔画像の魅力度を回答してください。</p>"
+      }
+
+      var test_procedure = {
+          timeline: [trial1],
+          timeline_variables: test_stimuli,
+          // randomize_order: true,
+      }
+
+      timeline.push(instruction1);
+      timeline.push(instruction2);
+      timeline.push(test_procedure);
+
+
+      jsPsych.init({
+        timeline: timeline,
+        on_finish: function() {
+          jsPsych.data.displayData();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="jspsych.js"></script>
+    <script src="plugins/jspsych-html-button-response.js"></script>
+    <link rel="stylesheet" href="css/jspsych.css">
+  </head>
+  <body></body>
+  <script>
+
+  var timeline = [];
+  
+  /* test trials */
+  var test_stimuli = [
+      { stimulus: "<img src='img/001.png' width='200px'></img>"},
+      { stimulus: "<img src='img/002.png' width='200px'></img>"},
+      { stimulus: "<img src='img/003.png' width='200px'></img>"},
+      { stimulus: "<img src='img/004.png' width='200px'></img>"},
+      { stimulus: "<img src='img/005.png' width='200px'></img>"}
+
+    ];
+
+    var trial1 = {
+    type: 'html-button-response',
+    stimulus:  jsPsych.timelineVariable('stimulus'),
+    choices: ['Green', 'Blue', 'Red'],
+    prompt: "<p>What color is this word?</p>"
+  }
+
+  var test_procedure = {
+      timeline: [trial1],
+      timeline_variables: test_stimuli,
+      // randomize_order: true,
+    }
+
+  timeline.push(test_procedure);
+
+  jsPsych.init({
+    timeline: timeline,
+    on_finish: function(){jsPsych.data.displayData();}
+  });
+
+  </script>
+</html>
