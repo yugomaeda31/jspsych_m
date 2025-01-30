@@ -60,7 +60,7 @@ for (var i = 1; i <= 200; i++) {
     
     // オブジェクトを作成して配列に追加
     test_stimuli1.push({
-        stimulus: "https://yugomaeda31.github.io/jspsych_m/jspsych-6/female/F" + num + ".jpg"
+        stimulus: "https://yugomaeda31.github.io/jspsych_m/jspsych-6/Female/F" + num + ".jpg"
     });
 }
 
@@ -76,7 +76,7 @@ for (var i = 1; i <= 200; i++) {
     
     // オブジェクトを作成して配列に追加
     test_stimuli2.push({
-        stimulus: "<img src='https://yugomaeda31.github.io/jspsych_m/jspsych-6/female/F" + num + ".jpg' width='200px'></img>"
+        stimulus: "<img src='https://yugomaeda31.github.io/jspsych_m/jspsych-6/Female/F" + num + ".jpg' width='200px'></img>"
     });
 }
 
